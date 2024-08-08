@@ -19,13 +19,13 @@
 		</div>
 		<!--页面描述-->
 		<div class="ui teal attached segment">
-			<div class="typo content" v-viewer v-html="info.content"></div>
+			<div class="typo content" v-viewer v-html="info"></div>
 		</div>
 		<!--评论-->
-		<div class="ui bottom teal attached segment threaded comments">
+		<!-- <div class="ui bottom teal attached segment threaded comments">
 			<CommentList :page="2" :blogId="null" v-if="info.commentEnabled"/>
 			<h3 class="ui header" v-else>评论已关闭</h3>
-		</div>
+		</div> -->
 	</div>
 </template>
 
@@ -57,8 +57,8 @@
 			getData() {
 				getData().then(res => {
 					if (res.code === 200) {
-						this.friendList = res.data.friendList
-						this.info = res.data.friendInfo
+						this.friendList = res.data.list
+						this.info = res.data.desc
 					} else {
 						this.msgError(res.msg)
 					}

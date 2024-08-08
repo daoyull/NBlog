@@ -6,7 +6,7 @@
 					<img :src="introduction.avatar">
 				</div>
 				<div class="content" align="center">
-					<div class="header">{{ introduction.name }}</div>
+					<div class="header">{{ introduction.title }}</div>
 					<!--彩色滚动字体-->
 					<div id="rollText" class="m-margin-top" v-if="introduction.rollText.length!=0"></div>
 				</div>

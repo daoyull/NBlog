@@ -38,8 +38,8 @@
 						</div>
 					</div>
 					<!--分类-->
-					<router-link :to="`/category/${blog.category.name}`" class="ui orange large ribbon label" v-if="blog.category">
-						<i class="small folder open icon"></i><span class="m-text-500">{{ blog.category.name }}</span>
+					<router-link :to="`/category/${blog.category.id}`" class="ui orange large ribbon label" v-if="blog.category">
+						<i class="small folder open icon"></i><span class="m-text-500">{{ blog.category.categoryName }}</span>
 					</router-link>
 					<!--文章Markdown正文-->
 					<div class="typo js-toc-content m-padded-tb-small match-braces rainbow-braces" v-viewer :class="{'m-big-fontsize':bigFontSize}" v-html="blog.content"></div>
@@ -61,7 +61,9 @@
 					<!--标签-->
 					<div class="row m-padded-tb-no">
 						<div class="column m-padding-left-no">
-							<router-link :to="`/tag/${tag.name}`" class="ui tag label m-text-500 m-margin-small" :class="tag.color" v-for="(tag,index) in blog.tags" :key="index">{{ tag.name }}</router-link>
+							<router-link :to="`/tag/${tag.tagName}`" class="ui tag label m-text-500 m-margin-small"
+							:style="{ backgroundColor: tag.tagColor }"
+							 v-for="(tag,index) in blog.tags" :key="index">{{ tag.tagName }}</router-link>
 						</div>
 					</div>
 				</div>
@@ -70,7 +72,7 @@
 		<!--博客信息-->
 		<div class="ui attached positive message">
 			<ul class="list">
-				<li>作者：{{ $store.state.introduction.name }}
+				<li>作者：{{ $store.state.introduction.title }}
 					<router-link to="/about">（联系作者）</router-link>
 				</li>
 				<li>发表时间：{{ blog.createTime | dateFormat('YYYY-MM-DD HH:mm') }}</li>
@@ -79,10 +81,10 @@
 			</ul>
 		</div>
 		<!--评论-->
-		<div class="ui bottom teal attached segment threaded comments">
+		<!-- <div class="ui bottom teal attached segment threaded comments">
 			<CommentList :page="0" :blogId="blogId" v-if="blog.commentEnabled"/>
 			<h3 class="ui header" v-else>评论已关闭</h3>
-		</div>
+		</div> -->
 	</div>
 </template>
 

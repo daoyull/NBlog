@@ -93,7 +93,7 @@
 				likeMoment(id).then(res => {
 					if (res.code === 200) {
 						this.$notify({
-							title: res.msg,
+							title: "点赞成功",
 							type: 'success'
 						})
 						this.likeMomentIds.push(id)

@@ -6,11 +6,11 @@
 		</div>
 		<div class="ui attached segment">
 			<div class="timeline">
-				<div :class="colorObj[index%5]" v-for="(value,key,index) in blogMap" :key="index">
+				<div :class="colorObj[index%5]" v-for="(value,index) in list" :key="index">
 					<div class="tl-header">
-						<a class="ui large label m-text-500">{{ key }}</a>
+						<a class="ui large label m-text-500">{{ value.time }}</a>
 					</div>
-					<div class="tl-item" v-for="blog in value" :key="blog.id">
+					<div class="tl-item" v-for="blog in value.blogs" :key="blog.id">
 						<div class="tl-wrap">
 							<span class="tl-date">{{ blog.day }}</span>
 							<a href="javascript:;" @click.prevent="toBlog(blog)">
@@ -35,7 +35,7 @@
 		name: "Archives",
 		data() {
 			return {
-				blogMap: {},
+				list: [],
 				count: 0,
 				colorObj: {
 					0: 'tl-blue',
@@ -53,7 +53,7 @@
 			getArchives() {
 				getArchives().then(res => {
 					if (res.code === 200) {
-						this.blogMap = res.data.blogMap
+						this.list = res.data.list
 						this.count = res.data.count
 					} else {
 						this.msgError(res.msg);
